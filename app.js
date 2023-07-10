@@ -1,7 +1,7 @@
 
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateEmail } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateEmail ,sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
 const firebaseConfig = {
   apiKey: "AIzaSyDuOrp8JQixQzRW9yojXIWP1EF8U74uCBk",
   authDomain: "authentication-firebase-e23fb.firebaseapp.com",
@@ -70,7 +70,7 @@ logInBtn.addEventListener("click", () => {
   signInWithEmailAndPassword(auth, signInEmail.value, signInPassword.value)
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log(user + "done")
+      console.log(user , "done")
 
     })
     .catch((error) => {
@@ -83,10 +83,46 @@ logInBtn.addEventListener("click", () => {
 
 
 
+let updateUser = document.getElementById("updateUser");
+let update = document.getElementById("update");
+updateUser.addEventListener("click", ()=>{
+  update.style.display = "block";
+  homeBtn.style.display = "none"
+
+})
 
 
-updateEmail(auth.currentUser, "user@example.com").then(() => {
 
-}).catch((error) => {
-  
-});
+
+let updateBtn = document.getElementById("updateBtn");
+let emailUpdate = document.getElementById("emailUpdate");
+
+updateBtn.addEventListener("click", ()=>{
+  updateEmail(auth.currentUser, emailUpdate.value).then(() => {
+    console.log("updated")
+  }).catch((error) => {
+    console.log("error"+ error)
+  });
+})
+
+
+
+
+let verifiedUser = document.getElementById("verifiedUser");
+let verified = document.getElementById("verified")
+verifiedUser.addEventListener("click" , ()=>{
+  verified.style.display = "block";
+  homeBtn.style.display = "none"
+})
+
+
+
+let verifiedBtn = document.getElementById("verifiedBtn");
+verifiedBtn.addEventListener("click" , ()=>{
+  sendEmailVerification(auth.currentUser)
+    .then(() => {
+      console.log("verified")
+     
+    });
+
+})
