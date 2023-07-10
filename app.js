@@ -1,7 +1,7 @@
 
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateEmail } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
 const firebaseConfig = {
   apiKey: "AIzaSyDuOrp8JQixQzRW9yojXIWP1EF8U74uCBk",
   authDomain: "authentication-firebase-e23fb.firebaseapp.com",
@@ -79,3 +79,14 @@ logInBtn.addEventListener("click", () => {
       console.log(errorMessage);
     });
 })
+
+
+
+
+
+
+updateEmail(auth.currentUser, "user@example.com").then(() => {
+
+}).catch((error) => {
+  
+});
